@@ -1,0 +1,20 @@
+.chess-board{
+    width: 60vw;
+    height: 60vw;
+
+    max-height: 640px;
+    max-width: 640px;
+    min-width: 400px;
+    min-height: 400px;
+   
+    display: grid;
+    grid-template-columns: repeat(8,auto);
+    grid-template-rows: repeat(8,auto);
+}
+.white-tile {
+  background-color: #f0d9b5;
+}
+
+.black-tile {
+  background-color: #b58863;
+}

@@ -2,7 +2,7 @@ import ChessBoard from "./components/ChessBoard";
 
 function App() {
     return (
-        <div>
+        <div className="app">
             <ChessBoard />
         </div>
     );
