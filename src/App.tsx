@@ -1,8 +1,11 @@
+import ChessBoard from "./components/ChessBoard";
 
 function App() {
-  return(
-    <h1>hello</h1>
-  )
+    return (
+        <div>
+            <ChessBoard />
+        </div>
+    );
 }
 
-export default App
+export default App;
