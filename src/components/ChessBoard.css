@@ -1,25 +1,47 @@
 .chess-board {
   width: 60vw;
   height: 60vw;
-
   max-width: 640px;
   max-height: 640px;
   min-width: 400px;
   min-height: 400px;
-
   display: grid;
   grid-template-columns: repeat(8, 1fr);
   grid-template-rows: repeat(8, 1fr);
-  aspect-ratio: 1; 
+  aspect-ratio: 1;
   border: 2px solid #333;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.25);
+  position: relative;
+  user-select: none;
 }
 
 .tile {
+  position: relative;
   width: 100%;
   height: 100%;
-  display: grid;
-  place-content: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.chess-piece {
+  width: 100%;
+  height: 100%;
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+  transition: transform 0.1s ease;
+  cursor: grab;
+  user-select: none;
+}
+
+.chess-piece:hover {
+  transform: scale(1.05);
+}
+
+.chess-piece:active {
+  cursor: grabbing;
+  transform: scale(1.1);
 }
 
 .white-tile {
@@ -30,10 +52,15 @@
   background-color: #b58863;
 }
 
-.tile img {
-  width: 100%;
-  height: 100%;
-  object-fit: contain;
-  user-select: none;
+.dragging-piece {
+  position: absolute;
+  width: 12.5%;
+  height: 12.5%;
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
   pointer-events: none;
+  z-index: 1000;
+  transform: scale(1.1);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
 }
