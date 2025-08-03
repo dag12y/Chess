@@ -13,7 +13,6 @@ interface Piece {
 
 const initialPieces: Piece[] = [];
 
-// Add major pieces
 for (let p = 0; p < 2; p++) {
     const type = p === 0 ? "b" : "w";
     const y = p === 0 ? 7 : 0;
@@ -28,7 +27,6 @@ for (let p = 0; p < 2; p++) {
     initialPieces.push({ image: `/assets/images/king_${type}.png`, x: 4, y });
 }
 
-// Add pawns
 for (let i = 0; i < 8; i++) {
     initialPieces.push({ image: "/assets/images/pawn_b.png", x: i, y: 6 });
     initialPieces.push({ image: "/assets/images/pawn_w.png", x: i, y: 1 });
@@ -47,10 +45,17 @@ function ChessBoard() {
         const handleMouseMove = (e: MouseEvent) => {
             if (isDragging && boardRef.current) {
                 const boardRect = boardRef.current.getBoundingClientRect();
-                setDragPosition({
-                    x: e.clientX - boardRect.left - dragOffset.x,
-                    y: e.clientY - boardRect.top - dragOffset.y,
-                });
+                const rawX = e.clientX - boardRect.left - dragOffset.x;
+                const rawY = e.clientY - boardRect.top - dragOffset.y;
+
+                const tileSizeX = boardRect.width / 8;
+                const tileSizeY = boardRect.height / 8;
+
+                const clampedX = Math.max(0, Math.min(rawX, boardRect.width - tileSizeX));
+                const clampedY = Math.max(0, Math.min(rawY, boardRect.height - tileSizeY));
+
+                setDragPosition({ x: clampedX, y: clampedY });
+
             }
         };
 
